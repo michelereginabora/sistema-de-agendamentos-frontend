@@ -19,9 +19,9 @@ export default function Header() {
     <header className="p-4 shadow-md">
       <nav className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl md:text-2xl font-semibold">
+          <h3>
             Sistema de Agendamento
-          </h1>
+          </h3>
 
           <button 
             onClick={toggleMenu}
