@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import './globals.css'
-import Header from '@/components/header/header'
+import Header from '@/components/header/header-navigation'
 import Footer from '@/components/footer/footer'
 
 export const metadata = {
