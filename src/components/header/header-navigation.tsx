@@ -8,7 +8,7 @@ import { NavigationLink } from '@/types/header/navigation'
 
 const navigationLinks: NavigationLink[] = [
   { href: '/', label: 'Inicio' },
-  { href: '/login', label: 'Entrar' },
+  { href: '/sign-in', label: 'Entrar' },
   { href: '/service-catalog', label: 'Serviços' }
 ]
 
