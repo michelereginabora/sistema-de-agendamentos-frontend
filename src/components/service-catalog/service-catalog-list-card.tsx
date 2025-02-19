@@ -2,6 +2,7 @@ import React from 'react';
 import { BiTime } from 'react-icons/bi';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { IService } from '@/types/service-catalog/service-catalog.types';
+import Link from 'next/link';
 
 interface ServiceCardProps {
   service: IService;
@@ -31,10 +32,23 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
       </div>
       
       <div className="px-5 pb-5">
-        <button className="btn btn-primary">
+      <Link
+          href={{
+            pathname: '/services-availability',
+            query: { 
+              id: service.id,
+              name: service.name,
+              duration: service.duration,
+              price: service.price
+            }
+          }}          
+          className="btn btn-primary inline-block w-full text-center"
+        >
           Verificar disponibilidade
-        </button>
+        </Link>
       </div>
     </div>
   );
 };
+
+export default ServiceCard;
