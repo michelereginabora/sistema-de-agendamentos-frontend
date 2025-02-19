@@ -9,7 +9,7 @@ import { NavigationLink } from '@/types/header/navigation'
 const navigationLinks: NavigationLink[] = [
   { href: '/', label: 'Inicio' },
   { href: '/login', label: 'Entrar' },
-  { href: '/services', label: 'Serviços' }
+  { href: '/service-catalog', label: 'Serviços' }
 ]
 
 export default function Header() {

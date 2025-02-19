@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -13,9 +14,11 @@ export default function HomePage() {
             <p className="text-lg md:text-xl text-gray-600 mb-8">
               Simplifique seu processo de agendamento de serviços com nossa solução moderna e eficiente
             </p>
-            <button className="btn btn-primary">
-              Comece Agora
-            </button>
+            <Link href="/service-catalog">
+              <button className="btn btn-primary">
+                Comece Agora
+              </button>
+            </Link>
           </div>
 
           {/* Image Container */}
