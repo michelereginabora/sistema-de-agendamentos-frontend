@@ -1,8 +1,10 @@
 export interface IServiceAvailability {
-    serviceName: string;
-    appointmentDate: Date;
-    availableSlots: {
-      start: string;
-      end: string;
-    }[];
-  }
+  serviceName: string;
+  appointmentDate: string;
+  availableSlots: TimeSlot[];
+}
+
+export interface TimeSlot {
+  start: string;
+  end: string;
+}

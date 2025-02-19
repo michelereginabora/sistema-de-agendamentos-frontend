@@ -4,8 +4,11 @@ import { IServiceAvailability } from '@/types/service-availability/service-avail
 class ServiceAvailabilityAPI {
   private readonly baseURL = '/availability';
 
-  async getAvailability(): Promise<IServiceAvailability[]> {
-    return (await apiService.get<IServiceAvailability[]>(this.baseURL)).data;
+  async getAvailability(serviceId: string, date: string): Promise<IServiceAvailability> {
+    const response = await apiService.get<IServiceAvailability>(
+      `${this.baseURL}?serviceId=${serviceId}&date=${date}`
+    );
+    return response.data;
   }
 }
 

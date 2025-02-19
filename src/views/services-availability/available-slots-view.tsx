@@ -3,11 +3,10 @@
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { IService } from '@/types/service-catalog/service-catalog.types';
-import { IServiceAvailability, TimeSlot } from '@/types/service-availability/service-availability.types';
 import { serviceAPI } from '@/services/service-availability/service-availability.service';
+import AvailableSlotsView from './available-slots-view';
+import { IServiceAvailability } from '@/types/service-availability/service-availability.types';
 import { CalendarView } from '@/components/services-availability/services-availability-calendar';
-import { AvailableSlotsView } from '@/components/services-availability/services-availability-slots';
-
 
 export default function ServicesAvailabilityView() {
   const searchParams = useSearchParams();
@@ -29,22 +28,11 @@ export default function ServicesAvailabilityView() {
       const response = await serviceAPI.getAvailability(service.id, date);
       setAvailability(response);
     } catch (err) {
-      console.error('Error fetching availability:', err);
       setError('Erro ao carregar horários disponíveis');
+      console.error('Error fetching availability:', err);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSelectSlot = (timeSlot: TimeSlot) => {
-    if (!availability) return;
-    
-    console.log('Selected appointment:', {
-      serviceName: availability.serviceName,
-      appointmentDate: availability.appointmentDate,
-      timeSlot
-    });
-    // lógica de seleção do horário 
   };
 
   return (
@@ -52,19 +40,22 @@ export default function ServicesAvailabilityView() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="w-full">
           <div className="bg-white rounded-lg shadow p-4">
-            <CalendarView
-              service={service}
-              onSelectDate={handleDateSelect}
-            />
+            <CalendarView service={service} onSelectDate={handleDateSelect} />
           </div>
         </div>
         
         <div className="w-full">
           <AvailableSlotsView 
-            availability={availability}
+            slots={availability?.availableSlots || []}
             loading={loading}
             error={error}
-            onSelectSlot={handleSelectSlot}
+            onSelectSlot={(slot) => {
+              console.log('Selected slot:', {
+                service: service.name,
+                date: availability?.appointmentDate,
+                slot
+              });
+            }}
           />
         </div>
       </div>

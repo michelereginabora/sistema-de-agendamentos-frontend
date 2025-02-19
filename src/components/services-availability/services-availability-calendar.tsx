@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { SimpleCalendar } from './calendar/calendar';
+import { Calendar } from './calendar/calendar';
 import { ArrowLeft } from 'lucide-react';
 import { IService } from '@/types/service-catalog/service-catalog.types';
 
@@ -9,9 +9,8 @@ interface CalendarViewProps {
  onSelectDate: (date: string) => void;
 }
 
-const CalendarView = ({ service, onSelectDate }: CalendarViewProps) => {
+export const CalendarView = ({ service, onSelectDate }: CalendarViewProps) => {
  const handleDateSelect = (date: string) => {
-//    console.log('CalendarPage received date:', date);
    onSelectDate(date);
  };
 
@@ -38,12 +37,12 @@ const CalendarView = ({ service, onSelectDate }: CalendarViewProps) => {
          <div className="p-2">
            <div className="mb-4">
            </div>
-           <SimpleCalendar onSelectDate={handleDateSelect} />
+           <Calendar onSelectDate={handleDateSelect}
+            serviceId= {service.id}
+          />
          </div>
        </div>
      </main>
    </div>
  );
 };
-
-export default CalendarView;
