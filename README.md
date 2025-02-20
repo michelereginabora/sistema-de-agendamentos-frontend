@@ -2,7 +2,17 @@
 
 Sistema de agendamento moderno desenvolvido com as últimas tecnologias do ecossistema React.
 
-## 🚀 Stack Tecnológica
+Este projeto é um **Desafio Técnico** para o desenvolvimento de um **Sistema de Agendamentos**, onde usuários podem marcar horários para serviços específicos.  
+
+O objetivo é mostrar habilidades em:   
+✅ **NestJS** para construção da API ([backend](https://github.com/michelereginabora/sistema-de-agendamentos-backend))  
+✅ **React/Next.js** para a interface do usuário (frontend)
+✅ **Modelagem de banco de dados** com **PostgreSQL**
+✅ **Implementação de regras de negócio** para garantir um fluxo seguro e eficiente
+
+O sistema visa ser robusto, escalável e seguir boas práticas de desenvolvimento. 🚀
+
+## 🚀 Stack Tecnológica do Front-End
 
 - **TypeScript** (v5) - Superset JavaScript com tipagem estática
 - **Next.js** (v15) - Framework React com SSR/SSG
