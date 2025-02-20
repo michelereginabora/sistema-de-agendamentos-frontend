@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Agendamento (Scheduling System)
 
-## Getting Started
+Sistema de agendamento moderno desenvolvido com as últimas tecnologias do ecossistema React.
 
-First, run the development server:
+## 🚀 Stack Tecnológica
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **TypeScript** (v5) - Superset JavaScript com tipagem estática
+- **Next.js** (v15) - Framework React com SSR/SSG
+- **React** (v19) - Biblioteca para construção de interfaces
+- **TailwindCSS** - Framework CSS utility-first
+- **Axios** - Cliente HTTP para requisições à API
+
+## 📁 Estrutura do Projeto
+
+```
+├── public/
+│   └── images/            # Imagens estáticas
+├── src/
+│   ├── app/              # Páginas e rotas Next.js
+│   │   ├── layout.tsx    # Layout principal
+│   │   └── page.tsx      # Página inicial
+│   ├── boot/             # Configurações de inicialização
+│   │   └── axios.ts      # Configuração Axios e interceptors
+│   ├── components/       # Componentes React reutilizáveis
+│   ├── hooks/           # Custom hooks React
+│   ├── services/        # Serviços e integrações API
+│   ├── types/           # Definições de tipos TypeScript
+│   └── views/           # Componentes de página
+└── package.json         # Dependências e scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Requisitos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js 18.x ou superior
+- NPM
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Começando
 
-## Learn More
+1. **Clone o repositório:**
+```bash
+git clone https://github.com/michelereginabora/sistema-de-agendamentos-frontend
+cd sistema-de-agendamentos-frontend
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Instale as dependências:**
+```bash
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Configure as variáveis de ambiente com a url para o backend:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edite o arquivo `.env.local` com suas configurações
 
-## Deploy on Vercel
+4. **Inicie o servidor de desenvolvimento:**
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🔒 Autenticação
+
+O sistema utiliza autenticação JWT.
+
+## 📱 Features Principais
+
+- ✅ Agendamento de horários
+- ✅ Disponibilidade de Serviços
+- ✅ Atualizações dinâmicas
+- ✅ Integração com calendário
+
