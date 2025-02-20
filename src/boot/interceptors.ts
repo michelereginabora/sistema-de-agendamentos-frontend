@@ -21,7 +21,7 @@ export const responseInterceptor = (api: AxiosInstance) => {
     (error) => {
       if (error.response?.status === 401) {
         localStorage.removeItem('token');
-        window.location.href = '/login';
+        window.location.href = '/sign-in';
       }
       return Promise.reject(error);
     }

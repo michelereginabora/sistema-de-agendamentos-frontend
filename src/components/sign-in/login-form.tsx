@@ -3,7 +3,7 @@
 import { useAuth } from '@/hooks/auth/use-auth';
 import { IAuth } from '@/types/sign-in/sign-in.types';
 import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export const LoginForm = () => {
     const { login, loading, error } = useAuth();
@@ -13,8 +13,6 @@ export const LoginForm = () => {
     });
 
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const redirectUrl = searchParams.get('redirect') || '/';
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,7 +20,13 @@ export const LoginForm = () => {
         const success = await login(credentials);
         
         if (success) {
-            router.push(redirectUrl);
+            const redirectUrl = sessionStorage.getItem('redirectUrl');
+            if (redirectUrl) {
+              sessionStorage.removeItem('redirectUrl');
+              router.push(redirectUrl);
+            } else {
+              router.push('/');
+            }
         }
     };
 
