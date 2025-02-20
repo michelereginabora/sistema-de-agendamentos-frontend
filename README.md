@@ -12,6 +12,14 @@ O objetivo é mostrar habilidades em:
 
 O sistema visa ser robusto, escalável e seguir boas práticas de desenvolvimento. 🚀
 
+### TUTORIAL BACKEND
+
+[Instruções de uso back-end](https://github.com/michelereginabora/sistema-de-agendamentos-backend/blob/main/TUTORIAL.md)
+
+### VIDEO APRESENTAÇÃO
+
+[Apresentação do funcionamento do sistema](https://vimeo.com/1058744987?share=copy)
+
 ## 🚀 Stack Tecnológica do Front-End
 
 - **TypeScript** (v5) - Superset JavaScript com tipagem estática
