@@ -49,13 +49,6 @@ export default function ServicesAvailabilityView() {
             slots={availability?.availableSlots || []}
             loading={loading}
             error={error}
-            onSelectSlot={(slot) => {
-              console.log('Selected slot:', {
-                service: service.name,
-                date: availability?.appointmentDate,
-                slot
-              });
-            }}
           />
         </div>
       </div>

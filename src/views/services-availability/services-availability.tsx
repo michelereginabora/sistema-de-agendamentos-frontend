@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { IService } from '@/types/service-catalog/service-catalog.types';
 import { CalendarView } from '@/components/services-availability/services-availability-calendar';
 import { AvailableSlotsView } from '@/components/services-availability/services-availability-slots';
@@ -32,13 +33,19 @@ export default function ServicesAvailabilityView() {
     isModalOpen,
     showSuccessAlert,
     successData,
-    error: bookingError,
+    error: appointmentError,
     handleSelectSlot,
     handleConfirmAppointment,
     setIsModalOpen,
     setShowSuccessAlert,
     isAuthenticated
   } = useServiceAppointment();
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    handleDateSelect(service.id, formattedDate);
+  }, [service.id]);
 
   const onDateSelect = (date: string) => {
     handleDateSelect(service.id, date);
@@ -62,6 +69,8 @@ export default function ServicesAvailabilityView() {
     }
   };
 
+  const hasNoAvailableSlots = !loading && availability?.availableSlots?.length === 0;
+
   return (
     <div className="container mx-auto px-4 py-6">
       {showSuccessAlert && successData && (
@@ -83,16 +92,24 @@ export default function ServicesAvailabilityView() {
         
         <div className="w-full">
                     
-        {!isAuthenticated && status !== 'loading' && (
+        {!isAuthenticated && (
             <AuthAlert />
           )}
           
-          <AvailableSlotsView 
-            availability={availability}
-            loading={loading}
-            error={availabilityError || bookingError}
-            onSelectSlot={handleSelectSlot}
-          />
+          {hasNoAvailableSlots ? (
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+              <p className="text-yellow-700">
+                Não há horários disponíveis para esta data. Por favor, selecione outra data.
+              </p>
+            </div>
+          ) : (
+            <AvailableSlotsView 
+              availability={availability}
+              loading={loading}
+              error={availabilityError || appointmentError}
+              onSelectSlot={handleSelectSlot}
+            />
+          )}
           
           <AppointmentSummaryModal 
             serviceName={availability?.serviceName || ''}

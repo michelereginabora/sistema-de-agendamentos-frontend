@@ -7,7 +7,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import './calendar-styles.css';
 import { serviceAPI } from '@/services/service-availability/service-availability.service';
 
-
 registerLocale('pt-BR', ptBR);
 
 interface SimpleCalendarProps {
@@ -24,11 +23,18 @@ export const Calendar = ({ onSelectDate, serviceId }: SimpleCalendarProps) => {
   const fetchMonthAvailability = async (date: Date) => {
     setIsLoading(true);
     try {
-      const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+      const currentMonthDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+      const nextMonthDays = new Date(date.getFullYear(), date.getMonth() + 2, 0).getDate();
+      
       const availabilityMap: {[key: string]: boolean} = {};
+      const allDays = Array.from({ length: currentMonthDays + nextMonthDays }, (_, index) => {
+        const isNextMonth = index >= currentMonthDays;
+        const dayIndex = isNextMonth ? index - currentMonthDays : index;
+        const month = isNextMonth ? date.getMonth() + 1 : date.getMonth();
+        return new Date(date.getFullYear(), month, dayIndex + 1);
+      });
 
-      const promisesArray = Array.from({ length: daysInMonth }, (_, index) => {
-        const currentDate = new Date(date.getFullYear(), date.getMonth(), index + 1);
+      const promisesArray = allDays.map(currentDate => {
         const formattedDate = currentDate.toISOString().split('T')[0];
         
         return serviceAPI.getAvailability(serviceId, formattedDate)
@@ -36,15 +42,15 @@ export const Calendar = ({ onSelectDate, serviceId }: SimpleCalendarProps) => {
             const hasAvailableSlots = Array.isArray(availability.availableSlots) && 
                                     availability.availableSlots.length > 0;
             availabilityMap[formattedDate] = hasAvailableSlots;
-  
           })
           .catch((error) => {
             console.error(`Erro ao buscar disponibilidade para ${formattedDate}:`, error);
             availabilityMap[formattedDate] = false;
           });
       });
+
       await Promise.all(promisesArray);
-      setAvailableDates(availabilityMap);
+      setAvailableDates(prevDates => ({...prevDates, ...availabilityMap}));
     } catch (error) {
       console.error('Erro ao buscar disponibilidade:', error);
     }
@@ -71,18 +77,11 @@ export const Calendar = ({ onSelectDate, serviceId }: SimpleCalendarProps) => {
     const formattedDate = date.toISOString().split('T')[0];
     const isAvailable = availableDates[formattedDate];
     
-    const isCurrentMonth = date.getMonth() === currentMonth.getMonth() &&
-                         date.getFullYear() === currentMonth.getFullYear();
-    
-    if (!isCurrentMonth) {
-      return 'text-gray-300 pointer-events-none opacity-50';
-    }
-    
     if (isAvailable === false || (formattedDate in availableDates && !isAvailable)) {
       return 'bg-red-100 cursor-not-allowed pointer-events-none';
     }
     
-    return isAvailable ? 'bg-green-100 hover:bg-green-200 cursor-pointer' : 'bg-red-100 cursor-not-allowed pointer-events-none';
+    return isAvailable ? 'bg-green-100 hover:bg-green-200 cursor-pointer' : '';
   };
 
   return (
