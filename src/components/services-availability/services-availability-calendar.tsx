@@ -4,6 +4,7 @@ import React from 'react';
 import { Calendar } from './calendar/calendar';
 import { ArrowLeft } from 'lucide-react';
 import { IService } from '@/types/service-catalog/service-catalog.types';
+import { format, parseISO } from 'date-fns';
 
 interface CalendarViewProps {
   service: IService;
@@ -12,7 +13,9 @@ interface CalendarViewProps {
 
 export const CalendarView = ({ service, onSelectDate }: CalendarViewProps) => {
   const handleDateSelect = (date: string) => {
-    onSelectDate(date);
+      const parsedDate = parseISO(date);
+      const formattedDate = format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+      onSelectDate(formattedDate);
   };
 
   return (

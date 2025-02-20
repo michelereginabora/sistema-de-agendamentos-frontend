@@ -6,7 +6,7 @@ interface AppointmentSummaryModalProps {
   servicePrice: string;
   appointmentDate: string;
   selectedSlot: TimeSlot | null;
-  onConfirmBooking: () => void;
+  onConfirmAppointment: () => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -16,7 +16,7 @@ export const AppointmentSummaryModal = ({
   servicePrice,
   appointmentDate,
   selectedSlot,
-  onConfirmBooking,
+  onConfirmAppointment,
   isOpen,
   onClose
 }: AppointmentSummaryModalProps) => {
@@ -71,7 +71,7 @@ export const AppointmentSummaryModal = ({
 
         <div className="mt-6">
           <button 
-            onClick={onConfirmBooking}
+            onClick={onConfirmAppointment}
             className="w-full btn btn-primary py-2 px-4 rounded-md transition-colors"
           >
             Confirmar Agendamento
