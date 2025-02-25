@@ -1,15 +1,16 @@
-import apiService from '@/boot/axios';
+import api from '@/boot/axios'; // Importa a instância axios em vez do apiService
 import { IAppointment } from '@/types/service-appointments/service-appointments.types';
 import { requestInterceptor, responseInterceptor } from '@/boot/interceptors';
+import apiService from '../api/api';
 
-requestInterceptor(apiService);
-responseInterceptor(apiService);
+requestInterceptor(api);
+responseInterceptor(api);
 
 class ServiceAppointmentsAPI {
   private readonly baseURL = '/appointments';
 
   async postAppointment(data: Partial<IAppointment>): Promise<IAppointment> {
-    return (await apiService.post<IAppointment>(this.baseURL, data)).data;
+    return apiService.post<IAppointment>(this.baseURL, data);
   }
 }
 

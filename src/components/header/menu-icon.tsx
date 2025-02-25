@@ -1,6 +1,6 @@
 import { MenuIconProps } from '@/types/header/navigation'
 
-export function MenuIcon({ isOpen }: MenuIconProps) {
+export const MenuIcon = ({ isOpen }: MenuIconProps) => {
   return (
     <svg 
       className="w-6 h-6" 

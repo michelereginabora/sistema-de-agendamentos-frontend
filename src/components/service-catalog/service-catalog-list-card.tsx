@@ -8,7 +8,7 @@ interface ServiceCardProps {
   service: IService;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+export const ServiceCard = ({ service }: ServiceCardProps) => {
   return (
     <div className="w-full max-w-sm bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="p-5">

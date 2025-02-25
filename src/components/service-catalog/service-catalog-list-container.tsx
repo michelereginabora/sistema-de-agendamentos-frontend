@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { useServices } from '@/hooks/service-catalog/service-catalog-list-hook';
+import { useServices } from '@/hooks/service-catalog/use-service-catalog-list';
 import React from 'react';
 import { ServiceCard } from './service-catalog-list-card';
 
-export const ServiceList: React.FC = () => {
+export const ServiceList = () => {
   const { services, loading, error } = useServices();
 
   if (loading) return <div>Carregando...</div>;

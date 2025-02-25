@@ -10,12 +10,12 @@ interface AvailableSlotsViewProps {
   onSelectSlot: (timeSlot: TimeSlot) => void;
 }
 
-export const AvailableSlotsView: React.FC<AvailableSlotsViewProps> = ({ 
+export const AvailableSlotsView = ({ 
   availability, 
   loading, 
   error,
   onSelectSlot 
-}) => {
+}: AvailableSlotsViewProps) => {
   if (loading) {
     return (
       <div className="w-full bg-white rounded-lg shadow p-4">
