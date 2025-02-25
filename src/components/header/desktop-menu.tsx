@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MenuProps } from '@/types/header/navigation'
 
-export function DesktopMenu({ links }: MenuProps) {
+export const DesktopMenu = ({ links }: MenuProps) => {
   return (
     <ul className="hidden md:flex gap-6">
       {links.map(({ href, label }) => (

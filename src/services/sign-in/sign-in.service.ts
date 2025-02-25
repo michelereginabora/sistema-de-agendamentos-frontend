@@ -1,5 +1,7 @@
-import apiService from '@/boot/axios';
+
+import api from '@/boot/axios';
 import { IAuth, IAuthResponse } from '@/types/sign-in/sign-in.types';
+import apiService from '../api/api';
 
 class AuthService {
     private readonly baseURL = '/auth';
@@ -9,13 +11,11 @@ class AuthService {
         try {
             const response = await apiService.post<IAuthResponse>(`${this.baseURL}/login`, credentials);
             
-            if (response.data.access_token) {
-                this.setToken(response.data.access_token);
-
-                apiService.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+            if (response.access_token) {
+                this.setToken(response.access_token);
             }
             
-            return response.data;
+            return response;
         } catch (error) {
             console.error('Erro no login:', error);
             throw new Error('Falha na autenticação');
@@ -24,33 +24,28 @@ class AuthService {
 
     logout(): void {
         localStorage.removeItem(this.TOKEN_KEY);
-        delete apiService.defaults.headers.common['Authorization'];
+        delete api.defaults.headers.common['Authorization'];
     }
 
     setToken(token: string): void {
         localStorage.setItem(this.TOKEN_KEY, token);
-        apiService.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
     getToken(): string | null {
         const token = localStorage.getItem(this.TOKEN_KEY);
         if (token) {
-            apiService.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
         return token;
     }
 
     isAuthenticated(): boolean {
         const token = this.getToken();
-        const hasToken = !!token;
-        return hasToken;
+        return !!token;
     }
 }
 
 export const authService = new AuthService();
 
-
-const token = localStorage.getItem('@App:token');
-if (token) {
-    apiService.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-}
+authService.getToken();

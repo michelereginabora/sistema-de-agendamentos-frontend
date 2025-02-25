@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import { IService } from '@/types/service-catalog/service-catalog.types';
 import { CalendarView } from '@/components/services-availability/services-availability-calendar';
 import { AvailableSlotsView } from '@/components/services-availability/services-availability-slots';
-import AppointmentSummaryModal from '@/components/service-appointments/services-appointments-summary';
 import { AuthAlert } from '@/components/auth/auth-alert-login';
 import { SuccessAlert } from '@/components/service-appointments/appointment-alert';
-import { useServiceAvailability } from '@/hooks/service-availability/service-availability';
-import { useServiceAppointment } from '@/hooks/service-appointment/service-appointment';
+import { useServiceAvailability } from '@/hooks/service-availability/use-service-availability';
+import { useServiceAppointment } from '@/hooks/service-appointment/use-service-appointment';
+import { AppointmentSummaryModal } from '@/components/service-appointments/services-appointments-summary';
 
 export default function ServicesAvailabilityView() {
   const searchParams = useSearchParams();

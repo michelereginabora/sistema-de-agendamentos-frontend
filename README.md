@@ -67,7 +67,7 @@ npm install
 
 3. **Configure as variáveis de ambiente com a url para o backend:**
 
-Edite o arquivo `.env.local` com suas configurações
+Copie o arquivo `.env.local` e nomeie como `.env` com suas configurações
 
 4. **Inicie o servidor de desenvolvimento:**
 ```bash

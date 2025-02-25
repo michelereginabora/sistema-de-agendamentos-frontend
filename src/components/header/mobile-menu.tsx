@@ -1,9 +1,7 @@
-"use client"
-
 import Link from 'next/link'
 import { MobileMenuProps } from '@/types/header/navigation'
 
-export function MobileMenu({ isOpen, links, onLinkClick }: MobileMenuProps) {
+export const MobileMenu = ({ isOpen, links, onLinkClick }: MobileMenuProps) => {
   if (!isOpen) return null
 
   return (

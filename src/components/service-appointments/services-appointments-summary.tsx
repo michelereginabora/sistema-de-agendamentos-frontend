@@ -81,5 +81,3 @@ export const AppointmentSummaryModal = ({
     </div>
   );
 };
-
-export default AppointmentSummaryModal;
